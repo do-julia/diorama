@@ -2,32 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Vite App</title>
-  <style>
-    html, body {
-      margin: 0;
-      height: 100%
-    }
-    #info {
-      position: absolute;
-      top: 0px;
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      text-align: right;
-
-    }
-    button {
-      border-radius: 40px;
-      font-size: 40px;
-      padding: 20px;
-      font-family: Georgia, serif;
-    }
-  </style>
+  <title>Diorama - Inspired by &TEAM's Under the Skin MV</title>
+  <link rel="stylesheet" href="style.css" >
 </head>
 <body>
 <div id = "info">
-  <button> info </button>
+  <button id="openModal">info</button>
+  <div class="modal" id="modal">
+    <div class="modal-inner">
+      <h2>about</h2>
+      <p>
+        Lorem ipsum dolor sit amet. Sed quod sint et molestias quia rem dolor dolor ut facere magni aut odio natus eum quia quam. Et quasi iure sit tempore atque et quia magni est omnis sequi eum sequi facere. Aut culpa distinctio aut quibusdam deleniti rem vero magni ut porro neque qui molestiae voluptas cum corporis autem.
+      </p>
+      <h2>contact</h2>
+      <p>
+        Lorem ipsum dolor sit amet. Sed quod sint et molestias quia rem dolor dolor ut facere magni aut odio natus eum quia quam. Et quasi iure sit tempore atque et quia magni est omnis sequi eum sequi facere. Aut culpa distinctio aut quibusdam deleniti rem vero magni ut porro neque qui molestiae voluptas cum corporis autem.
+      </p>
+      <h2>credits</h2>
+      <p>
+        Lorem ipsum dolor sit amet. Sed quod sint et molestias quia rem dolor dolor ut facere magni aut odio natus eum quia quam. Et quasi iure sit tempore atque et quia magni est omnis sequi eum sequi facere. Aut culpa distinctio aut quibusdam deleniti rem vero magni ut porro neque qui molestiae voluptas cum corporis autem.
+      </p>
+      <button id="closeModal">close</button>
+    </div>
+  </div>
 </div>
 <script type="module" src="/src/main.js"></script>
 </body>

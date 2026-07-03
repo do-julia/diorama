@@ -51,3 +51,16 @@ window.addEventListener('resize', function () {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
+
+// Open & Close of the Info button
+const openButton = document.getElementById("openModal");
+const closeButton = document.getElementById("closeModal");
+const modal = document.getElementById("modal");
+const modalInner = document.getElementById("modal-inner");
+
+openButton.addEventListener("click", function() {
+    modal.classList.add("open");
+})
+closeButton.addEventListener("click", function() {
+    modal.classList.remove("open");
+})
