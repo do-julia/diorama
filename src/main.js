@@ -26,14 +26,14 @@ loadingManager.onLoad = function () {
 
 // Load the 3D model
 const loader = new GLTFLoader(loadingManager);
-loader.load( 'public/final.glb', function (gltf) {
+loader.load( './final.glb', function (gltf) {
     scene.add(gltf.scene);
 }, undefined, function (error) {
     console.error(error);
 })
 
 // Set skybox
-const cubeTextureLoader = new THREE.CubeTextureLoader().setPath('public/skybox/');
+const cubeTextureLoader = new THREE.CubeTextureLoader().setPath('./skybox/');
 const cubeTexture = await cubeTextureLoader.loadAsync( [
     'px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'
 ] );
@@ -41,7 +41,7 @@ scene.background = cubeTexture;
 
 // Set ground mesh
 const textureLoader = new THREE.TextureLoader();
-const groundTexture = await textureLoader.loadAsync('public/concreteTexture.png');
+const groundTexture = await textureLoader.loadAsync('./concreteTexture.png');
 const groundMaterial = new THREE.MeshBasicMaterial({map: groundTexture});
 
 const groundGeometry = new THREE.BoxGeometry(300, .01, 300)
