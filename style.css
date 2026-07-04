@@ -26,7 +26,7 @@ button {
 }
 
 .modal {
-    background-color: #4a8aa8;
+    background-color: white;
     opacity: 0;
     position: fixed;
     top: 0;
@@ -48,7 +48,6 @@ button {
 
 .modal-inner {
     opacity: 1;
-    background-color: #4a8aa8;
     border-radius: 5px;
     text-align: center;
     width: 80%;
@@ -90,5 +89,5 @@ label {
 }
 
 a {
-    color: lightgray;
+    color: #4a8aa8;
 }

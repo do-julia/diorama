@@ -44,7 +44,7 @@ const textureLoader = new THREE.TextureLoader();
 const groundTexture = await textureLoader.loadAsync('./concreteTexture.png');
 const groundMaterial = new THREE.MeshBasicMaterial({map: groundTexture});
 
-const groundGeometry = new THREE.BoxGeometry(300, .01, 300)
+const groundGeometry = new THREE.BoxGeometry(275, .01, 275)
 const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
 scene.add(groundMesh);
 
@@ -55,7 +55,7 @@ camera.position.set( -20, 2, 10 );
 const controls = new OrbitControls(camera, canvas);
 controls.target.set(0,2,-1);
 controls.enableDamping = true;
-controls.maxDistance = 40;
+controls.maxDistance = 30;
 controls.maxPolarAngle = Math.PI / 2;
 controls.enablePan = false;
 controls.minDistance = 5;
