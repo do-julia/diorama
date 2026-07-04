@@ -39,8 +39,17 @@ const cubeTexture = await cubeTextureLoader.loadAsync( [
 ] );
 scene.background = cubeTexture;
 
+// Set ground mesh
+const textureLoader = new THREE.TextureLoader();
+const groundTexture = await textureLoader.loadAsync('assets/concreteTexture.png');
+const groundMaterial = new THREE.MeshBasicMaterial({map: groundTexture});
+
+const groundGeometry = new THREE.BoxGeometry(300, .01, 300)
+const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
+scene.add(groundMesh);
+
 // Instantiate the camera
-camera.position.set( 0, 2, 0 );
+camera.position.set( -10, 2, 5 );
 
 // Set up OrbitControls
 const controls = new OrbitControls(camera, canvas);
