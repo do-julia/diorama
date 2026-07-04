@@ -1,0 +1,94 @@
+html, body {
+    margin: 0;
+    height: 100%
+}
+
+.info-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: right;
+    opacity: 0;
+
+}
+
+button:active {
+    opacity: 0.7;
+}
+
+button {
+    border-radius: 2rem;
+    font-size: 2rem;
+    padding: 1rem;
+    font-family: Georgia, serif;
+}
+
+.modal {
+    background-color: #4a8aa8;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.open {
+    opacity: 1;
+    z-index: 999;
+}
+
+.modal-inner {
+    opacity: 1;
+    background-color: #4a8aa8;
+    border-radius: 5px;
+    text-align: center;
+    width: 80%;
+}
+
+.modal-inner h2 {
+    margin: 0
+}
+
+.modal-inner p {
+    line-height: 24px;
+    margin: 10px 0;
+}
+
+.progress-bar-container {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#progress-bar {
+    width: 30%;
+    margin-top: 0.5%;
+    height: 2%;
+}
+
+label {
+    color: white;
+    font-size: 2rem;
+}
+
+a {
+    color: lightgray;
+}

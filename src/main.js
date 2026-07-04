@@ -10,8 +10,22 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild(renderer.domElement);
 const canvas = renderer.domElement;
 
+// Loading screen
+const loadingManager = new THREE.LoadingManager()
+const progressBar = document.getElementById("progress-bar");
+loadingManager.onProgress = function (url, loaded, total) {
+    progressBar.value = (loaded / total) * 100;
+}
+
+const progressBarContainer = document.getElementById("progress-bar-container");
+const infoContainer = document.getElementById("info-container");
+loadingManager.onLoad = function () {
+    progressBarContainer.style.display = "none";
+    infoContainer.style.opacity = "1";
+}
+
 // Load the 3D model
-const loader = new GLTFLoader();
+const loader = new GLTFLoader(loadingManager);
 loader.load( 'assets/final.glb', function (gltf) {
     scene.add(gltf.scene);
 }, undefined, function (error) {
@@ -25,29 +39,56 @@ const cubeTexture = await cubeTextureLoader.loadAsync( [
 ] );
 scene.background = cubeTexture;
 
+// Set ground mesh
+const textureLoader = new THREE.TextureLoader();
+const groundTexture = await textureLoader.loadAsync('assets/concreteTexture.png');
+const groundMaterial = new THREE.MeshBasicMaterial({map: groundTexture});
+
+const groundGeometry = new THREE.BoxGeometry(300, .01, 300)
+const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
+scene.add(groundMesh);
+
 // Instantiate the camera
-camera.position.set( 0, 2, 0 );
+camera.position.set( -20, 2, 10 );
 
 // Set up OrbitControls
 const controls = new OrbitControls(camera, canvas);
 controls.target.set(0,2,-1);
+controls.enableDamping = true;
+controls.maxDistance = 40;
+controls.maxPolarAngle = Math.PI / 2;
+controls.enablePan = false;
+controls.minDistance = 5;
 controls.update();
 
 // Set the lighting
-const color = 0xFFFFFF;
-const intensity = 10;
-const light = new THREE.HemisphereLight('#2B5061FF', '#62483DFF', 1);
-scene.add(light);
-
+const hemisphereLight = new THREE.HemisphereLight('#2B5061', 'lightgray', 5);
+scene.add(hemisphereLight);
+// const directionalLight = new THREE.DirectionalLight('#a89443',  1);
+// scene.add(directionalLight);
 
 // Render the scene; Add any animation here
 function animate(time) {
+    controls.update();
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
 
+// Automatically resize scene
 window.addEventListener('resize', function () {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
+
+// Open & Close of the Info button
+const openButton = document.getElementById("openModal");
+const closeButton = document.getElementById("closeModal");
+const modal = document.getElementById("modal");
+
+openButton.addEventListener("click", function() {
+    modal.classList.add("open");
+})
+closeButton.addEventListener("click", function() {
+    modal.classList.remove("open");
+})
