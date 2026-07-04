@@ -10,8 +10,22 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild(renderer.domElement);
 const canvas = renderer.domElement;
 
+// Loading screen
+const loadingManager = new THREE.LoadingManager()
+const progressBar = document.getElementById("progress-bar");
+loadingManager.onProgress = function (url, loaded, total) {
+    progressBar.value = (loaded / total) * 100;
+}
+
+const progressBarContainer = document.getElementById("progress-bar-container");
+const infoContainer = document.getElementById("info-container");
+loadingManager.onLoad = function () {
+    progressBarContainer.style.display = "none";
+    infoContainer.style.opacity = "1";
+}
+
 // Load the 3D model
-const loader = new GLTFLoader();
+const loader = new GLTFLoader(loadingManager);
 loader.load( 'assets/final.glb', function (gltf) {
     scene.add(gltf.scene);
 }, undefined, function (error) {
