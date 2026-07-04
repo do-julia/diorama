@@ -49,26 +49,32 @@ const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
 scene.add(groundMesh);
 
 // Instantiate the camera
-camera.position.set( -10, 2, 5 );
+camera.position.set( -20, 2, 10 );
 
 // Set up OrbitControls
 const controls = new OrbitControls(camera, canvas);
 controls.target.set(0,2,-1);
+controls.enableDamping = true;
+controls.maxDistance = 40;
+controls.maxPolarAngle = Math.PI / 2;
+controls.enablePan = false;
+controls.minDistance = 5;
 controls.update();
 
 // Set the lighting
-const color = 0xFFFFFF;
-const intensity = 10;
-const light = new THREE.HemisphereLight('#2B5061FF', '#62483DFF', 1);
-scene.add(light);
-
+const hemisphereLight = new THREE.HemisphereLight('#2B5061', 'lightgray', 5);
+scene.add(hemisphereLight);
+// const directionalLight = new THREE.DirectionalLight('#a89443',  1);
+// scene.add(directionalLight);
 
 // Render the scene; Add any animation here
 function animate(time) {
+    controls.update();
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
 
+// Automatically resize scene
 window.addEventListener('resize', function () {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -79,7 +85,6 @@ window.addEventListener('resize', function () {
 const openButton = document.getElementById("openModal");
 const closeButton = document.getElementById("closeModal");
 const modal = document.getElementById("modal");
-const modalInner = document.getElementById("modal-inner");
 
 openButton.addEventListener("click", function() {
     modal.classList.add("open");
