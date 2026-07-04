@@ -88,3 +88,7 @@ label {
     color: white;
     font-size: 2rem;
 }
+
+a {
+    color: lightgray;
+}
