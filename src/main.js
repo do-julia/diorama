@@ -49,11 +49,11 @@ const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
 scene.add(groundMesh);
 
 // Instantiate the camera
-camera.position.set( -20, 2, 10 );
+camera.position.set( -15, 2, 15 );
 
 // Set up OrbitControls
 const controls = new OrbitControls(camera, canvas);
-controls.target.set(0,2,-1);
+controls.target.set(-3,2,0);
 controls.enableDamping = true;
 controls.maxDistance = 50;
 controls.maxPolarAngle = Math.PI / 2;
